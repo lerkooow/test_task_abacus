@@ -121,7 +121,8 @@ export const App = () => {
           </LabelInput>
           <LabelInput>
             <HelperText>
-              Введите количество косточек на каждом стержне сверху <span style={{ color: "#808080" }}>(маск. 2)</span>
+              Введите количество косточек сверху от разделителя
+              <span style={{ color: "#808080" }}>(маск. 2)</span>
             </HelperText>
             <StyledInput
               value={numberBeadsTop}
@@ -133,7 +134,8 @@ export const App = () => {
           </LabelInput>
           <LabelInput>
             <HelperText>
-              Введите количество косточек на каждом стержне снизу <span style={{ color: "#808080" }}>(маск. 6)</span>
+              Введите количество косточек снизу от разделителя
+              <span style={{ color: "#808080" }}>(маск. 6)</span>
             </HelperText>
             <StyledInput
               value={numberBeadsBottom}

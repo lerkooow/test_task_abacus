@@ -52,7 +52,6 @@ export const Frame: React.FC<FrameProps> = ({
   isAlternateBead,
   numberRod,
 }) => {
-  console.log("🚀 ~ numberRod:", numberRod);
   return (
     <AbacusFrame isAlternateFrame={isAlternateFrame} numberRod={numberRod}>
       {Array.from({ length: numberRod }).map((_, index) => (
