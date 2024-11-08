@@ -12,7 +12,7 @@ interface FrameProps {
   numberRod: number;
 }
 
-export const AbacusFrame = styled.div<{ isAlternateFrame?: boolean }>`
+export const AbacusFrame = styled.div<{ isAlternateFrame: boolean; numberRod: number }>`
   display: flex;
   justify-content: center;
   border: 10px solid #838383;
@@ -23,6 +23,12 @@ export const AbacusFrame = styled.div<{ isAlternateFrame?: boolean }>`
     isAlternateFrame &&
     css`
       border: 10px solid #692212;
+    `}
+
+  ${({ numberRod }) =>
+    numberRod === 0 &&
+    css`
+      border: none;
     `}
 `;
 
@@ -46,8 +52,9 @@ export const Frame: React.FC<FrameProps> = ({
   isAlternateBead,
   numberRod,
 }) => {
+  console.log("🚀 ~ numberRod:", numberRod);
   return (
-    <AbacusFrame isAlternateFrame={isAlternateFrame}>
+    <AbacusFrame isAlternateFrame={isAlternateFrame} numberRod={numberRod}>
       {Array.from({ length: numberRod }).map((_, index) => (
         <FrameContainer key={index}>
           <ImgFrame src={isAlternateFrame ? frameSkin2 : frameSkin1} alt="frame" />

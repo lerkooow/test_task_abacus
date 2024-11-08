@@ -115,7 +115,7 @@ export const App = () => {
               value={numberRod}
               onChange={(e) => handleInputChange(e, setNumberRod, 15)}
               type="number"
-              min={1}
+              min={0}
               max={15}
             />
           </LabelInput>
@@ -127,7 +127,7 @@ export const App = () => {
               value={numberBeadsTop}
               onChange={(e) => handleInputChange(e, setNumberBeadsTop, 2)}
               type="number"
-              min={1}
+              min={0}
               max={2}
             />
           </LabelInput>
@@ -139,7 +139,7 @@ export const App = () => {
               value={numberBeadsBottom}
               onChange={(e) => handleInputChange(e, setNumberBeadsBottom, 6)}
               type="number"
-              min={1}
+              min={0}
               max={6}
             />
           </LabelInput>
