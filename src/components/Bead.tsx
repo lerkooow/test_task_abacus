@@ -1,11 +1,13 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import beadSkin1 from "../images/BeadSkin1.png";
+import beadSkin2 from "../images/BeadSkin2.png";
 
 interface BeadProps {
-  numberBeadsTop?: number[];
-  numberBeadsBottom?: number[];
-  beadSkin: string;
+  numberBeadsTop?: number;
+  numberBeadsBottom?: number;
   isBottom?: boolean;
+  isAlternateBead: boolean;
 }
 
 const StyledBead = styled.div<{ isBottom?: boolean }>`
@@ -25,14 +27,19 @@ const StyledBead = styled.div<{ isBottom?: boolean }>`
 `;
 
 const StyledImage = styled.img`
-  height: 45px;
+  height: 40px;
+  margin-top: 5px;
 `;
 
-export const Bead: React.FC<BeadProps> = ({ numberBeadsTop, numberBeadsBottom, beadSkin, isBottom }) => {
+export const Bead: React.FC<BeadProps> = ({ numberBeadsTop, numberBeadsBottom, isBottom, isAlternateBead }) => {
   return (
     <StyledBead isBottom={isBottom}>
-      {numberBeadsTop?.map((_, index) => <StyledImage key={index} src={beadSkin} alt="bead" />)}
-      {numberBeadsBottom?.map((_, index) => <StyledImage key={index} src={beadSkin} alt="bead" />)}
+      {Array.from({ length: numberBeadsTop ?? 0 }).map((_, index) => (
+        <StyledImage key={`bottom-${index}`} src={isAlternateBead ? beadSkin1 : beadSkin2} alt="bead" />
+      ))}
+      {Array.from({ length: numberBeadsBottom ?? 0 }).map((_, index) => (
+        <StyledImage key={`bottom-${index}`} src={isAlternateBead ? beadSkin1 : beadSkin2} alt="bead" />
+      ))}
     </StyledBead>
   );
 };

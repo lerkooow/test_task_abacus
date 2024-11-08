@@ -1,20 +1,29 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Bead } from "./Bead";
+import frameSkin1 from "../images/FrameSkin1.png";
+import frameSkin2 from "../images/FrameSkin2.png";
 
 interface FrameProps {
-  frameSkin: string;
-  beadSkin: string;
-  numberBeadsTop: number[];
-  numberBeadsBottom: number[];
+  numberBeadsTop: number;
+  numberBeadsBottom: number;
+  isAlternateFrame: boolean;
+  isAlternateBead: boolean;
+  numberRod: number;
 }
 
-export const AbacusFrame = styled.div`
+export const AbacusFrame = styled.div<{ isAlternateFrame?: boolean }>`
   display: flex;
   justify-content: center;
   border: 10px solid #838383;
   border-radius: 10px;
   position: relative;
+
+  ${({ isAlternateFrame }) =>
+    isAlternateFrame &&
+    css`
+      border: 10px solid #692212;
+    `}
 `;
 
 const FrameContainer = styled.div`
@@ -30,16 +39,20 @@ const ImgFrame = styled.img`
   z-index: 1;
 `;
 
-export const Frame: React.FC<FrameProps> = ({ frameSkin, beadSkin, numberBeadsTop, numberBeadsBottom }) => {
-  const numberRow = 10;
-
+export const Frame: React.FC<FrameProps> = ({
+  isAlternateFrame,
+  numberBeadsTop,
+  numberBeadsBottom,
+  isAlternateBead,
+  numberRod,
+}) => {
   return (
-    <AbacusFrame>
-      {Array.from({ length: numberRow }).map((_, index) => (
+    <AbacusFrame isAlternateFrame={isAlternateFrame}>
+      {Array.from({ length: numberRod }).map((_, index) => (
         <FrameContainer key={index}>
-          <ImgFrame src={frameSkin} alt="frame" />
-          <Bead beadSkin={beadSkin} numberBeadsTop={numberBeadsTop} />
-          <Bead beadSkin={beadSkin} numberBeadsBottom={numberBeadsBottom} isBottom />
+          <ImgFrame src={isAlternateFrame ? frameSkin2 : frameSkin1} alt="frame" />
+          <Bead isAlternateBead={isAlternateBead} numberBeadsTop={numberBeadsTop} />
+          <Bead isAlternateBead={isAlternateBead} numberBeadsBottom={numberBeadsBottom} isBottom />
         </FrameContainer>
       ))}
     </AbacusFrame>
